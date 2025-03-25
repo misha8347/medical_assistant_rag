@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatGPT Style Website</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <!-- Login  -->
+  <div id="loginDiv" class="container">
+    <h2>Login</h2>
+    <input type="text" id="loginUsername" placeholder="Username">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button id="loginBtn" type="button">Log In</button>
+    <p style="text-align: center;">Don't have an account?
+      <button id="showRegisterBtn" class="toggle-link" type="button">Register</button>
+    </p>
+  </div>
+
+  <!-- Reg -->
+  <div id="registrationDiv" class="container hidden">
+    <h2>Register</h2>
+    <input type="text" id="regUsername" placeholder="Username">
+    <input type="password" id="regPassword" placeholder="Password">
+    <button id="registerBtn" type="button">Register</button>
+    <p style="text-align: center;">Already have an account?
+      <button id="showLoginBtn" class="toggle-link" type="button">Log In</button>
+    </p>
+  </div>
+
+  <!-- Options  -->
+  <div id="chatOptionsDiv" class="container hidden">
+    <h2>Welcome!</h2>
+    <button id="startChatButton" type="button">Start New Chat</button>
+    <button id="chooseChatButton" type="button">Choose Existing Chat</button>
+    <button id="logOutButton" type="button">Logout</button>
+  </div>
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

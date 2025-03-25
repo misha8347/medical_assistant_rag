@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Existing Chats</title>
+  <link rel="stylesheet" href="{% static 'css/list.css' %}">
+</head>
+<body>
+  <div class="container">
+    <div class="chat-list-header">
+      <h2>Existing Chats</h2>
+      <button id="chatOptionsBtn" type="button">Back</button>
+    </div>
+    <ul class="chat-list">
+      <!-- Chats will be inserted here dynamically -->
+    </ul>
+  </div>
+  <script src="{% static 'js/list.js' %}"></script>
+</body>
+</html>

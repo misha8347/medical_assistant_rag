@@ -1,0 +1,49 @@
+/* Basic page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+  
+  /* Container for the list */
+.container {
+    max-width: 600px;
+    background: #fff;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+  
+h2 {
+    text-align: center;
+}
+  
+  /* List styling */
+.chat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+  
+.chat-item {
+    padding: 15px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+  
+  .chat-item:hover {
+    background: #f9f9f9;
+}
+  
+.chat-item h3 {
+    margin: 0 0 5px 0;
+}
+  
+.chat-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}

@@ -1,0 +1,124 @@
+/* General page styling */
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Chat container styling */
+.chat-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 600px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+/* Chat header styling */
+.chat-header {
+  position: relative;
+  background: #4CAF50;
+  color: #fff;
+  padding: 15px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: center;
+}
+
+/* Style for the Chat Options button in header */
+.chat-header button {
+  position: absolute;
+  right: 10px;
+  top: 15px;
+  background: #fff;
+  color: #4CAF50;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chat-header button:hover {
+  background: #f1f1f1;
+}
+
+/* Chat messages area */
+.chat-messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #fafafa;
+}
+
+/* Chat input area */
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  outline: none;
+}
+
+.chat-input button {
+  background: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-left: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.chat-input button:hover {
+  background: #45a049;
+}
+
+/* Toast message styling */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  opacity: 1;
+  transition: opacity 1s ease;
+  z-index: 1000;
+}
+
+.toast.fade-out {
+  opacity: 0;
+}
+
+/* Chat message bubbles */
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  background: #e1f5fe;
+  max-width: 80%;
+}
+
+.message.self {
+  background: #c8e6c9;
+  margin-left: auto;
+}

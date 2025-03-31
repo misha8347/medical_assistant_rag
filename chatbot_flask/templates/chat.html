@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+</head>
+<body>
+
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2>Chat Room</h2>
+      <button id="chatOptionsBtn" type="button">Back</button>
+    </div>
+    
+    <div class="chat-messages" id="chatMessages">
+      <!-- Messages will be dynamically loaded here -->
+    </div>
+    
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Type your message here...">
+      <button id="sendBtn" type="button">Send</button>
+    </div>
+
+    <div id="chatContainer"></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>

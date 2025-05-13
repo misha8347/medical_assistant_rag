@@ -44,8 +44,8 @@ class VectorDB:
                     metadata={'PMID': row['PMID'], 'title': row['title']}
                 )
 
-        logger.info('sampling only 100k chunks...')
-        df = df.sample(n=100000, random_state=42)
+        # logger.info('sampling only 100k chunks...')
+        # df = df.sample(n=100000, random_state=42)
         logger.info('Initializing FAISS index...')
         embedding_dim = len(self.embeddings_model.embed_query("hello world"))
         index = faiss.IndexFlatIP(embedding_dim)  # Можно заменить на IndexIVFFlat для экономии памяти
@@ -90,8 +90,10 @@ class VectorDB:
 
 
 def main():
-    vector_database = VectorDB()
-    df_chunked_texts = pd.read_parquet('/s3/misha/data_dir/PMC_patients/chunked_texts.parquet', engine='pyarrow')
+    vector_database = VectorDB(db_path='/s3/misha/data_dir/PMC_patients/df_faiss_ppr')
+    # df_chunked_texts = pd.read_parquet('/s3/misha/data_dir/PMC_patients/chunked_texts.parquet', engine='pyarrow')
+    df_chunked_texts = pd.read_json('/home/mikhail/diploma_work/medrag/evaluation/PMC-Patients-ReCDS/PPR/corpus.jsonl', lines=True)
+    df_chunked_texts.rename(columns={'_id': 'PMID', 'text': 'chunk'}, inplace=True)
     vector_database.create_knowledge_base(df_chunked_texts)
 
 if __name__ == "__main__":

@@ -15,8 +15,8 @@ class KeywordDB:
         # self.index_to_metadata = {}
     
     def create_knowledge_base(self, df: pd.DataFrame):
-        logger.info('Sampling 100k chunks...')
-        df = df.sample(n=100000, random_state=42)
+        # logger.info('Sampling 100k chunks...')
+        # df = df.sample(n=100000, random_state=42)
         
         logger.info('Tokenizing chunks...')
         corpus = df[['chunk', 'PMID', 'title']].to_dict(orient='records')
@@ -60,9 +60,11 @@ class KeywordDB:
 
 def main():
     import pandas as pd
-    df_pmc_patients = pd.read_parquet('/s3/misha/data_dir/PMC_patients/chunked_texts.parquet', engine='pyarrow')
+    # df_pmc_patients = pd.read_parquet('/s3/misha/data_dir/PMC_patients/chunked_texts.parquet', engine='pyarrow')
+    df_pmc_patients = pd.read_json('/home/mikhail/diploma_work/medrag/evaluation/PMC-Patients-ReCDS/PPR/corpus.jsonl', lines=True)
+    df_pmc_patients.rename(columns={'_id': 'PMID', 'text': 'chunk'}, inplace=True)
 
-    keyword_database = KeywordDB()
+    keyword_database = KeywordDB(db_path='/s3/misha/data_dir/PMC_patients/db_bm25s_ppr')
     keyword_database.create_knowledge_base(df_pmc_patients)
 
 if __name__ == "__main__":

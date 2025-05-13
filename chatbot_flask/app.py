@@ -3,6 +3,7 @@ import torch
 from langchain_huggingface import HuggingFaceEmbeddings
 from deep_translator import GoogleTranslator
 from langdetect import detect
+from loguru import logger
 
 
 import sys
@@ -45,6 +46,7 @@ def home():
 
 @app.route('/generate_health_recommendation', methods=['POST'])
 def generate_health_recommendation():
+    logger.info('received query from user!')
     try:
         data = request.get_json()  # Get JSON request
         question = data.get("query")
@@ -59,6 +61,7 @@ def generate_health_recommendation():
         response = qa_pipeline.generate_response(translated_text)
         translator = GoogleTranslator(source='en', target=detected_lang)
         translated_response = translator.translate(response)
+        logger.info('sending response back to user!')
         return jsonify({"response": translated_response})
 
     except Exception as e:
@@ -66,4 +69,4 @@ def generate_health_recommendation():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

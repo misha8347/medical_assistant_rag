@@ -1,0 +1,1 @@
+python3 inference.py --task PPR --split test --result_path results/test_results.json

@@ -36,7 +36,9 @@ class QAPipeline:
         Question: {query}
         Answer:"""
 
-        response: ChatResponse = chat(model='llama3.2:3b', messages=[
+        # model_name = 'llama3.2:3b'
+        model_name = 'alibayram/medgemma'
+        response: ChatResponse = chat(model=model_name, messages=[
             {
                 "role": "system", 
                 "content": """
@@ -94,7 +96,9 @@ class QAPipeline:
         """
 
         start = time.time()
-        response: ChatResponse = chat(model='llama3.2:3b', messages=[
+        # model_name = 'llama3.2:3b'
+        model_name = 'alibayram/medgemma'
+        response: ChatResponse = chat(model=model_name, messages=[
             {
                 "role": "system", 
                 "content": """
@@ -143,7 +147,9 @@ class QAPipeline:
         {summarized_texts}. If the context does not contain the answer to the question write 'The suggested context does not contain the answer to the question', and try to answer on your own, giving the references to the sources you used. But do not make up anything, use just factual and trustworthy data.
         """
 
-        response: ChatResponse = chat(model='llama3.2:3b', messages=[
+        # model_name = 'llama3.2:3b'
+        model_name = 'alibayram/medgemma'
+        response: ChatResponse = chat(model=model_name, messages=[
             {
                 "role": "system", 
                 "content": """

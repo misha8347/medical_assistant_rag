@@ -29,7 +29,7 @@ vector_database = VectorDB()
 keyword_database.load_db()
 vector_database.load_db()
 
-device = torch.device('cuda:0')
+device = torch.device('cpu')
 model = HuggingFaceEmbeddings(model_name="neuml/pubmedbert-base-embeddings", 
                                         model_kwargs={'device': device},
                                         encode_kwargs={"normalize_embeddings": True})
@@ -69,4 +69,4 @@ def generate_health_recommendation():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=4000, debug=True)

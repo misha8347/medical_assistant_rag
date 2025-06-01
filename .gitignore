@@ -2,3 +2,16 @@ __pycache__/
 medrag/evaluation/PMC-Patients-ReCDS/
 medrag/evaluation/results/
 medrag/evaluation/datasets/
+
+#vector and keyword databases
+db_bm25s/
+db_faiss/
+db_bm25s.zip
+db_faiss.zip
+
+#virtual environment
+venv/
+
+#models
+models-google-medgemma-4b-it/
+models--google--medgemma-4b-it.zip

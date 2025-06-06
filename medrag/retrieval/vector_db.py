@@ -23,11 +23,12 @@ def convert_documents_to_text(results: List[Tuple[Document, float]]) -> str:
 
 class VectorDB:
     def __init__(self, 
-                 db_path: str = '/s3/misha/data_dir/PMC_patients/db_faiss'):
+                 db_path: str = '/Users/mikhailogay/Documents/MaProjects/medical_assistant_rag/db_faiss'):
         self.db_path = db_path
         os.makedirs(self.db_path, exist_ok=True)
 
-        self.index_path = os.path.join(self.db_path, "faiss_index.idx")
+        # self.index_path = os.path.join(self.db_path, "faiss_index.idx")
+        self.index_path = '/Users/mikhailogay/Documents/MaProjects/medical_assistant_rag/index.faiss2'
         self.metadata_path = os.path.join(self.db_path, "metadata.pkl")
 
         self.device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
@@ -46,8 +47,9 @@ class VectorDB:
 
         logger.info('Initializing FAISS index...')
         embedding_dim = len(self.embeddings_model.embed_query("hello world"))
-        index = faiss.IndexFlatIP(embedding_dim)  # Можно заменить на IndexIVFFlat для экономии памяти
-        
+        # index = faiss.IndexFlatIP(embedding_dim)  # Можно заменить на IndexIVFFlat для экономии памяти
+        index = faiss.read_index(self.index_path)
+
         self.vector_store = FAISS(
             embedding_function=self.embeddings_model,
             index=index,

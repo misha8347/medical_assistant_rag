@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendBtn = document.getElementById('sendBtn');
     const chatMessages = document.getElementById('chatMessages');
     const chatOptionsBtn = document.getElementById('chatOptionsBtn');
+    const loadingSpinner = document.getElementById('loadingSpinner');
 
     // Get chat ID from the template
     const chatContainer = document.getElementById('chatContainer');
@@ -46,6 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             body: JSON.stringify({ "query": message })
         });
+        if (!response.ok) {
+            const errorText = await response.text();  // get raw error for debugging
+            throw new Error(`Server responded with ${response.status}: ${errorText}`);
+        }
         console.log(response)
         const data = await response.json();
         return data;
@@ -64,14 +69,26 @@ document.addEventListener('DOMContentLoaded', () => {
         addMessage(message, true);
         chatInput.value = '';
 
-        console.log('sending message to ml service')
-        let health_recommendation = await generateHealthRecommendation(message)
-        console.log(health_recommendation.response)
-        console.log('response received!')
-        // Simulated echo reply after 1 second (replace with real back-end integration)
-        setTimeout(() => {
-            addMessage(health_recommendation.response, false);
-        }, 1000);
+        // Show spinner
+        loadingSpinner.style.display = 'flex';
+
+        try{
+            console.log('sending message to ml service')
+            let health_recommendation = await generateHealthRecommendation(message)
+            // Hide spinner after receiving response
+            loadingSpinner.style.display = 'none';
+            console.log(health_recommendation.response)
+            console.log('response received!')
+            // Simulated echo reply after 1 second (replace with real back-end integration)
+            setTimeout(() => {
+                addMessage(health_recommendation.response, false);
+            }, 1000);
+        } catch (error) {
+            console.error("❌ Error from backend:", error);
+            loadingSpinner.style.display = 'none';
+            addMessage("⚠️ Error getting response. Please try again.", false);
+            // console.error(error);
+        }
     });
 
     // Allow sending message with Enter key
